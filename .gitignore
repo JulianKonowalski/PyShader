@@ -1,0 +1,15 @@
+# config
+.vs/
+.vscode/
+
+# cache files
+.cache/
+__pycache__/
+
+# environment
+.venv/
+
+# build folders
+out/
+build/
+bin/
