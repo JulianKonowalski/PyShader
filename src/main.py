@@ -1,2 +1,6 @@
+import sys
+from src.App import App
+
 if __name__ == "__main__":
-    print("Hello world!")
+    app = App(sys.argv)
+    app.exec()
