@@ -12,7 +12,7 @@ class App(QApplication):
         super().__init__(argv)
         os.environ["SHADER_PATH"] = str(pathlib.Path.joinpath(
             pathlib.Path(__file__).parent.resolve(),
-            "shaders"
+            "../examples"
         ))
 
         self.main_window = MainWindow()

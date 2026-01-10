@@ -15,7 +15,7 @@ class CentralWidget(QWidget):
     def __init__(self, parent: QWidget | None = None) -> None:
         super().__init__(parent)
         
-        frag_path = pathlib.Path.joinpath(pathlib.Path(os.environ["SHADER_PATH"]), "examples", "UV.frag")
+        frag_path = pathlib.Path.joinpath(pathlib.Path(os.environ["SHADER_PATH"]), "UV.frag")
         with open(frag_path, "r") as frag_shader: frag_source = frag_shader.read()
 
         self.console = QPlainTextEdit()

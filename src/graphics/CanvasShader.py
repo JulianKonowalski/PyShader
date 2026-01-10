@@ -16,7 +16,7 @@ class CanvasShader(QOpenGLShaderProgram):
         
         if not self.addShaderFromSourceFile(
             QOpenGLShader.ShaderTypeBit.Vertex,
-            str(pathlib.Path.joinpath(pathlib.Path(os.environ["SHADER_PATH"]), "passthrough.vert"))
+            str(pathlib.Path.joinpath(pathlib.Path(__file__).parent.resolve(), "passthrough.vert"))
         ): raise RuntimeError(self.log())
 
         if not self.addShaderFromSourceCode(
