@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<meta name="generator" content="pdoc3 0.11.6">
+<title>src.graphics.CanvasShader API documentation</title>
+<meta name="description" content="">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/sanitize.min.css" integrity="sha512-y1dtMcuvtTMJc1yPgEqF0ZjQbhnc/bFhyvIyVNb9Zk5mIGtqVaAB1Ttl28su8AvFMOY0EwRbAe+HCLqj6W7/KA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/13.0.0/typography.min.css" integrity="sha512-Y1DYSb995BAfxobCkKepB1BqJJTPrOp3zPL74AWFugHHmmdcvO+C48WLrUOlhGMc0QG7AE3f7gmvvcrmX2fDoA==" crossorigin>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/default.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:1.5em;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:2em 0 .50em 0}h3{font-size:1.4em;margin:1.6em 0 .7em 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .2s ease-in-out}a:visited{color:#503}a:hover{color:#b62}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900;font-weight:bold}pre code{font-size:.8em;line-height:1.4em;padding:1em;display:block}code{background:#f3f3f3;font-family:"DejaVu Sans Mono",monospace;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source > summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible;min-width:max-content}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em 1em;margin:1em 0}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul ul{padding-left:1em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js" integrity="sha512-D9gUyxqja7hBtkWpPWGt9wfbfaMGVt9gnyCvYa+jojwwPHLCzUm5i8rpk7vD7wNee9bA35eYIjobYPaQuKS1MQ==" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => {
+hljs.configure({languages: ['bash', 'css', 'diff', 'graphql', 'ini', 'javascript', 'json', 'plaintext', 'python', 'python-repl', 'rust', 'shell', 'sql', 'typescript', 'xml', 'yaml']});
+hljs.highlightAll();
+/* Collapse source docstrings */
+setTimeout(() => {
+[...document.querySelectorAll('.hljs.language-python > .hljs-string')]
+.filter(el => el.innerHTML.length > 200 && ['"""', "'''"].includes(el.innerHTML.substring(0, 3)))
+.forEach(el => {
+let d = document.createElement('details');
+d.classList.add('hljs-string');
+d.innerHTML = '<summary>"""</summary>' + el.innerHTML.substring(3);
+el.replaceWith(d);
+});
+}, 100);
+})</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.graphics.CanvasShader</code></h1>
+</header>
+<section id="section-intro">
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.graphics.CanvasShader.CanvasShader"><code class="flex name class">
+<span>class <span class="ident">CanvasShader</span></span>
+<span>(</span><span>fragment_source: str)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CanvasShader(QOpenGLShaderProgram):
+    &#34;&#34;&#34;
+    A class representing the shader program.
+    It can be altered and recompiled at any
+    time by updating its uniform variables or
+    supplying new source code.
+    &#34;&#34;&#34;
+
+    # locations of shader uniform variables
+    frame_uniform: int      = 0
+    time_uniform: int       = 0
+    time_delta_uniform: int = 0
+    mouse_uniform: int      = 0
+    resolution_uniform: int = 0
+
+    def __init__(self, fragment_source: str):
+        &#34;&#34;&#34;
+        Initializes a CanvasShader object by
+        loading a default vertex shader and 
+        combining it with the supplied fragment 
+        shader source code.
+
+        :param fragment_source: source code of the fragment shader
+        :type fragment_source: str
+        &#34;&#34;&#34;
+        super().__init__()
+        
+        if not self.addShaderFromSourceFile(
+            QOpenGLShader.ShaderTypeBit.Vertex,
+            str(pathlib.Path.joinpath(pathlib.Path(__file__).parent.resolve(), &#34;passthrough.vert&#34;))
+        ): raise RuntimeError(self.log())
+
+        if not self.addShaderFromSourceCode(
+            QOpenGLShader.ShaderTypeBit.Fragment,
+            fragment_source
+        ): raise RuntimeError(self.log())
+
+        if not self.link(): raise RuntimeError(self.log())
+
+        self.frame_uniform      = self.uniformLocation(&#34;u_frame&#34;)
+        self.time_uniform       = self.uniformLocation(&#34;u_time&#34;)
+        self.time_delta_uniform = self.uniformLocation(&#34;u_time_delta&#34;)
+        self.mouse_uniform      = self.uniformLocation(&#34;u_mouse&#34;)
+        self.resolution_uniform = self.uniformLocation(&#34;u_resolution&#34;)
+
+    def setFrame(self, frame: int):
+        &#34;&#34;&#34;
+        Sets the value of the uniform variable
+        that stores the current frame number.
+
+        :param frame: current frame number
+        :type frame: int
+        &#34;&#34;&#34;
+        self.setUniformValue1i(self.frame_uniform, frame)
+
+    def setTime(self, time: float):
+        &#34;&#34;&#34;
+        Sets the value of the uniform variable
+        that stores the current time.
+        
+        :param time: current time in seconds
+        :type time: float
+        &#34;&#34;&#34;
+        self.setUniformValue1f(self.time_uniform, time)
+
+    def setTimeDelta(self, time_delta: float):
+        &#34;&#34;&#34;
+        Sets the value of the uniform variable
+        that stores the last frame generation time.
+        
+        :param time_delta: frame generation time in seconds
+        :type time_delta: float
+        &#34;&#34;&#34;
+        self.setUniformValue1f(self.time_delta_uniform, time_delta)
+
+    def setMouse(self, mouse: list[float]):
+        &#34;&#34;&#34;
+        Sets the value of the uniform variable
+        that stores the mouse position.
+        
+        :param mouse: mouse position in screen coordinates [0-max_screen_width, 0-max_screen_height]
+        :type mouse: list[float]
+        &#34;&#34;&#34;
+        self.setUniformValueArray(self.mouse_uniform, mouse, 1, 2)
+
+    def setResolution(self, resolution: list[float]):
+        &#34;&#34;&#34;
+        Sets the value of the uniform variable
+        that stores the screen resolution.
+        
+        :param resolution: screen resolution in pixels [screen_width, screen_height]
+        :type resolution: list[float]
+        &#34;&#34;&#34;
+        self.setUniformValueArray(self.resolution_uniform, resolution, 1, 2)</code></pre>
+</details>
+<div class="desc"><p>A class representing the shader program.
+It can be altered and recompiled at any
+time by updating its uniform variables or
+supplying new source code.</p>
+<p>Initializes a CanvasShader object by
+loading a default vertex shader and
+combining it with the supplied fragment
+shader source code.</p>
+<p>:param fragment_source: source code of the fragment shader
+:type fragment_source: str</p></div>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>PySide6.QtOpenGL.QOpenGLShaderProgram</li>
+<li>PySide6.QtCore.QObject</li>
+<li>Shiboken.Object</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.graphics.CanvasShader.CanvasShader.frame_uniform"><code class="name">var <span class="ident">frame_uniform</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.mouse_uniform"><code class="name">var <span class="ident">mouse_uniform</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.resolution_uniform"><code class="name">var <span class="ident">resolution_uniform</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.staticMetaObject"><code class="name">var <span class="ident">staticMetaObject</span></code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.time_delta_uniform"><code class="name">var <span class="ident">time_delta_uniform</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.time_uniform"><code class="name">var <span class="ident">time_uniform</span> : int</code></dt>
+<dd>
+<div class="desc"><p>The type of the None singleton.</p></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.graphics.CanvasShader.CanvasShader.setFrame"><code class="name flex">
+<span>def <span class="ident">setFrame</span></span>(<span>self, frame: int)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setFrame(self, frame: int):
+    &#34;&#34;&#34;
+    Sets the value of the uniform variable
+    that stores the current frame number.
+
+    :param frame: current frame number
+    :type frame: int
+    &#34;&#34;&#34;
+    self.setUniformValue1i(self.frame_uniform, frame)</code></pre>
+</details>
+<div class="desc"><p>Sets the value of the uniform variable
+that stores the current frame number.</p>
+<p>:param frame: current frame number
+:type frame: int</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.setMouse"><code class="name flex">
+<span>def <span class="ident">setMouse</span></span>(<span>self, mouse: list[float])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setMouse(self, mouse: list[float]):
+    &#34;&#34;&#34;
+    Sets the value of the uniform variable
+    that stores the mouse position.
+    
+    :param mouse: mouse position in screen coordinates [0-max_screen_width, 0-max_screen_height]
+    :type mouse: list[float]
+    &#34;&#34;&#34;
+    self.setUniformValueArray(self.mouse_uniform, mouse, 1, 2)</code></pre>
+</details>
+<div class="desc"><p>Sets the value of the uniform variable
+that stores the mouse position.</p>
+<p>:param mouse: mouse position in screen coordinates [0-max_screen_width, 0-max_screen_height]
+:type mouse: list[float]</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.setResolution"><code class="name flex">
+<span>def <span class="ident">setResolution</span></span>(<span>self, resolution: list[float])</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setResolution(self, resolution: list[float]):
+    &#34;&#34;&#34;
+    Sets the value of the uniform variable
+    that stores the screen resolution.
+    
+    :param resolution: screen resolution in pixels [screen_width, screen_height]
+    :type resolution: list[float]
+    &#34;&#34;&#34;
+    self.setUniformValueArray(self.resolution_uniform, resolution, 1, 2)</code></pre>
+</details>
+<div class="desc"><p>Sets the value of the uniform variable
+that stores the screen resolution.</p>
+<p>:param resolution: screen resolution in pixels [screen_width, screen_height]
+:type resolution: list[float]</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.setTime"><code class="name flex">
+<span>def <span class="ident">setTime</span></span>(<span>self, time: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setTime(self, time: float):
+    &#34;&#34;&#34;
+    Sets the value of the uniform variable
+    that stores the current time.
+    
+    :param time: current time in seconds
+    :type time: float
+    &#34;&#34;&#34;
+    self.setUniformValue1f(self.time_uniform, time)</code></pre>
+</details>
+<div class="desc"><p>Sets the value of the uniform variable
+that stores the current time.</p>
+<p>:param time: current time in seconds
+:type time: float</p></div>
+</dd>
+<dt id="src.graphics.CanvasShader.CanvasShader.setTimeDelta"><code class="name flex">
+<span>def <span class="ident">setTimeDelta</span></span>(<span>self, time_delta: float)</span>
+</code></dt>
+<dd>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setTimeDelta(self, time_delta: float):
+    &#34;&#34;&#34;
+    Sets the value of the uniform variable
+    that stores the last frame generation time.
+    
+    :param time_delta: frame generation time in seconds
+    :type time_delta: float
+    &#34;&#34;&#34;
+    self.setUniformValue1f(self.time_delta_uniform, time_delta)</code></pre>
+</details>
+<div class="desc"><p>Sets the value of the uniform variable
+that stores the last frame generation time.</p>
+<p>:param time_delta: frame generation time in seconds
+:type time_delta: float</p></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src.graphics" href="index.html">src.graphics</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.graphics.CanvasShader.CanvasShader" href="#src.graphics.CanvasShader.CanvasShader">CanvasShader</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.frame_uniform" href="#src.graphics.CanvasShader.CanvasShader.frame_uniform">frame_uniform</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.mouse_uniform" href="#src.graphics.CanvasShader.CanvasShader.mouse_uniform">mouse_uniform</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.resolution_uniform" href="#src.graphics.CanvasShader.CanvasShader.resolution_uniform">resolution_uniform</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.setFrame" href="#src.graphics.CanvasShader.CanvasShader.setFrame">setFrame</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.setMouse" href="#src.graphics.CanvasShader.CanvasShader.setMouse">setMouse</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.setResolution" href="#src.graphics.CanvasShader.CanvasShader.setResolution">setResolution</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.setTime" href="#src.graphics.CanvasShader.CanvasShader.setTime">setTime</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.setTimeDelta" href="#src.graphics.CanvasShader.CanvasShader.setTimeDelta">setTimeDelta</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.staticMetaObject" href="#src.graphics.CanvasShader.CanvasShader.staticMetaObject">staticMetaObject</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.time_delta_uniform" href="#src.graphics.CanvasShader.CanvasShader.time_delta_uniform">time_delta_uniform</a></code></li>
+<li><code><a title="src.graphics.CanvasShader.CanvasShader.time_uniform" href="#src.graphics.CanvasShader.CanvasShader.time_uniform">time_uniform</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.11.6</a>.</p>
+</footer>
+</body>
+</html>

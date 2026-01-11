@@ -15,10 +15,20 @@ ICO_LOAD_PATH = pathlib.Path.joinpath(ASSET_PATH, "ico_load.png")
 ICO_EXIT_PATH = pathlib.Path.joinpath(ASSET_PATH, "ico_exit.png")
 
 class MainWindow(QMainWindow):
+    """
+    Applications main window, that holds
+    all of its components.
+    """
 
     central_widget: CentralWidget | None = None
 
     def __init__(self):
+        """
+        Initializes a MainWindow object by
+        creating a central widget and a main
+        application taskbar.
+        """
+
         super().__init__()
 
         self.central_widget = CentralWidget(self)
@@ -47,6 +57,12 @@ class MainWindow(QMainWindow):
         self.addToolBar(toolbar)
 
     def saveFile(self):
+        """
+        Opens a file dialog and saves the contents
+        of the main widget's text edit. If no output
+        file is supplied the method takes an early
+        exit.
+        """
         filepath, check = QFileDialog.getSaveFileName(
             None, "Save Shader", "", self.tr("Supported Files (*.frag);;")
         )
@@ -56,6 +72,12 @@ class MainWindow(QMainWindow):
 
 
     def loadFile(self):
+        """
+        Opens a file dialog and loads the contents
+        of the supplied file to the main widget's 
+        tex edit. If no input file is supplied the
+        method takes an early exit.
+        """
         filepath, check = QFileDialog.getOpenFileName(
             None, "Load Shader", "", self.tr("Supported Files (*.frag);;")
         )
@@ -63,4 +85,8 @@ class MainWindow(QMainWindow):
         with open(filepath, "r") as file:
             self.central_widget.text_edit.setPlainText(file.read())
 
-    def exit(self): QApplication.quit()
+    def exit(self): 
+        """
+        Closes the application
+        """
+        QApplication.quit()

@@ -1,10 +1,16 @@
-import os
 import pathlib
 
 from PySide6.QtOpenGL import QOpenGLShader, QOpenGLShaderProgram
 
 class CanvasShader(QOpenGLShaderProgram):
+    """
+    A class representing the shader program.
+    It can be altered and recompiled at any
+    time by updating its uniform variables or
+    supplying new source code.
+    """
 
+    # locations of shader uniform variables
     frame_uniform: int      = 0
     time_uniform: int       = 0
     time_delta_uniform: int = 0
@@ -12,6 +18,15 @@ class CanvasShader(QOpenGLShaderProgram):
     resolution_uniform: int = 0
 
     def __init__(self, fragment_source: str):
+        """
+        Initializes a CanvasShader object by
+        loading a default vertex shader and 
+        combining it with the supplied fragment 
+        shader source code.
+
+        :param fragment_source: source code of the fragment shader
+        :type fragment_source: str
+        """
         super().__init__()
         
         if not self.addShaderFromSourceFile(
@@ -32,8 +47,52 @@ class CanvasShader(QOpenGLShaderProgram):
         self.mouse_uniform      = self.uniformLocation("u_mouse")
         self.resolution_uniform = self.uniformLocation("u_resolution")
 
-    def setFrame(self, frame: int): self.setUniformValue1i(self.frame_uniform, frame)
-    def setTime(self, time: float): self.setUniformValue1f(self.time_uniform, time)
-    def setTimeDelta(self, time_delta: float): self.setUniformValue1f(self.time_delta_uniform, time_delta)
-    def setMouse(self, mouse: list[float]): self.setUniformValueArray(self.mouse_uniform, mouse, 1, 2)
-    def setResolution(self, resolution: list[float]): self.setUniformValueArray(self.resolution_uniform, resolution, 1, 2)
+    def setFrame(self, frame: int):
+        """
+        Sets the value of the uniform variable
+        that stores the current frame number.
+
+        :param frame: current frame number
+        :type frame: int
+        """
+        self.setUniformValue1i(self.frame_uniform, frame)
+
+    def setTime(self, time: float):
+        """
+        Sets the value of the uniform variable
+        that stores the current time.
+        
+        :param time: current time in seconds
+        :type time: float
+        """
+        self.setUniformValue1f(self.time_uniform, time)
+
+    def setTimeDelta(self, time_delta: float):
+        """
+        Sets the value of the uniform variable
+        that stores the last frame generation time.
+        
+        :param time_delta: frame generation time in seconds
+        :type time_delta: float
+        """
+        self.setUniformValue1f(self.time_delta_uniform, time_delta)
+
+    def setMouse(self, mouse: list[float]):
+        """
+        Sets the value of the uniform variable
+        that stores the mouse position.
+        
+        :param mouse: mouse position in screen coordinates [0-max_screen_width, 0-max_screen_height]
+        :type mouse: list[float]
+        """
+        self.setUniformValueArray(self.mouse_uniform, mouse, 1, 2)
+
+    def setResolution(self, resolution: list[float]):
+        """
+        Sets the value of the uniform variable
+        that stores the screen resolution.
+        
+        :param resolution: screen resolution in pixels [screen_width, screen_height]
+        :type resolution: list[float]
+        """
+        self.setUniformValueArray(self.resolution_uniform, resolution, 1, 2)

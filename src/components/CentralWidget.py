@@ -6,13 +6,26 @@ from PySide6.QtWidgets import QWidget, QPlainTextEdit, QPushButton, QHBoxLayout,
 from src.components.ShaderPreview import ShaderPreview
 
 class CentralWidget(QWidget):
+    """
+    Main application widget containing
+    all of app components.
+    """
 
+    # all of the subcomponents
     console: QPlainTextEdit | None = None
     text_edit: QPlainTextEdit | None = None
     compile_button: QPushButton | None = None
     shader_preview: ShaderPreview | None = None
 
     def __init__(self, parent: QWidget | None = None) -> None:
+        """
+        Initialized a CentralWidget object by
+        creating all of its subcomponents and
+        connecting the required signals.
+        
+        :param parent: parent widget
+        :type parent: QWidget | None
+        """
         super().__init__(parent)
         
         frag_path = pathlib.Path.joinpath(pathlib.Path(os.environ["SHADER_PATH"]), "UV.frag")
@@ -47,7 +60,20 @@ class CentralWidget(QWidget):
         self.setLayout(main_layout)
 
     def updateShader(self):
+        """
+        Updates the currently displayed shader
+        by reading the contents of the text edit
+        and passing them to the shader as fragment
+        source code.
+        """
         self.shader_preview.updateShader(self.text_edit.document().toPlainText())
 
     def onError(self, error_message: str):
+        """
+        Handles the error message by printing
+        it to the console.
+
+        :param error_message: error message to be printed
+        :type error_message: str
+        """
         self.console.setPlainText(self.console.document().toPlainText() + error_message)

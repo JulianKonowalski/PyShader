@@ -4,15 +4,27 @@ import ctypes
 from OpenGL.GL import *
 
 class Canvas:
+    """
+    A rectangular plane that spans from
+    [-1.0, -1.0] to [1.0, 1.0] and is 
+    projected straight onto the screen.
+    """
 
-    vao: numpy.int32 = 0 
+    # GPU buffers and helper variables
+    # related to creating and rendering 
+    # the plane
+    vao: numpy.int32 = 0
     vbo: numpy.int32 = 0
     ebo: numpy.int32 = 0
-
     num_indices: numpy.int32 = 0
     num_vertices: numpy.int32 = 0
     
     def __init__(self):
+        """
+        Initializes a Canvas object by
+        creating the plane geometry on
+        the GPU.
+        """
         vertices = numpy.array([
             # position          # normal            # tex coord
             -1.0, -1.0, 0.0,    0.0, 0.0, -1.0,     0.0, 0.0,
@@ -56,6 +68,10 @@ class Canvas:
         glBindVertexArray(0)
 
     def draw(self) -> None:
+        """
+        Binds the internal plane geometry
+        and issues a draw call to the GPU.
+        """
         glBindVertexArray(self.vao)
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.ebo)
         glDrawElements(GL_TRIANGLES, self.num_indices, GL_UNSIGNED_INT, ctypes.c_void_p(0))
