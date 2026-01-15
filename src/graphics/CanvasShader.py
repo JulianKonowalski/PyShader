@@ -1,5 +1,3 @@
-import pathlib
-
 from PySide6.QtOpenGL import QOpenGLShader, QOpenGLShaderProgram
 
 VERT_SOURCE: str = """

@@ -1,7 +1,7 @@
 import numpy
 import ctypes
 
-from OpenGL.GL import *
+import OpenGL.GL as gl
 
 class Canvas:
     """
@@ -41,39 +41,39 @@ class Canvas:
         self.num_indices = len(indices)
         self.num_vertices = len(vertices)
 
-        self.vao = glGenVertexArrays(1)
-        glBindVertexArray(self.vao)
+        self.vao = gl.glGenVertexArrays(1)
+        gl.glBindVertexArray(self.vao)
         
-        self.vbo = glGenBuffers(1)
-        glBindBuffer(GL_ARRAY_BUFFER, self.vbo)
-        glBufferData(GL_ARRAY_BUFFER, vertices.nbytes, vertices, GL_STATIC_DRAW)
+        self.vbo = gl.glGenBuffers(1)
+        gl.glBindBuffer(gl.GL_ARRAY_BUFFER, self.vbo)
+        gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
 
-        self.ebo = glGenBuffers(1)
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.ebo)
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, indices.nbytes, indices, GL_STATIC_DRAW)
+        self.ebo = gl.glGenBuffers(1)
+        gl.glBindBuffer(gl.GL_ELEMENT_ARRAY_BUFFER, self.ebo)
+        gl.glBufferData(gl.GL_ELEMENT_ARRAY_BUFFER, indices.nbytes, indices, gl.GL_STATIC_DRAW)
 
         stride: numpy.uint32 = 8 * ctypes.sizeof(ctypes.c_float)
 
-        glEnableVertexAttribArray(0)
-        glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, stride, ctypes.c_void_p(0))
+        gl.glEnableVertexAttribArray(0)
+        gl.glVertexAttribPointer(0, 3, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(0))
 
-        glEnableVertexAttribArray(1)
-        glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, stride, ctypes.c_void_p(3 * ctypes.sizeof(ctypes.c_float)))
+        gl.glEnableVertexAttribArray(1)
+        gl.glVertexAttribPointer(1, 3, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(3 * ctypes.sizeof(ctypes.c_float)))
 
-        glEnableVertexAttribArray(2)
-        glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, stride, ctypes.c_void_p(6 * ctypes.sizeof(ctypes.c_float)))
+        gl.glEnableVertexAttribArray(2)
+        gl.glVertexAttribPointer(2, 2, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(6 * ctypes.sizeof(ctypes.c_float)))
 
-        glBindBuffer(GL_ARRAY_BUFFER, 0)
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
-        glBindVertexArray(0)
+        gl.glBindBuffer(gl.GL_ARRAY_BUFFER, 0)
+        gl.glBindBuffer(gl.GL_ELEMENT_ARRAY_BUFFER, 0)
+        gl.glBindVertexArray(0)
 
     def draw(self) -> None:
         """
         Binds the internal plane geometry
         and issues a draw call to the GPU.
         """
-        glBindVertexArray(self.vao)
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, self.ebo)
-        glDrawElements(GL_TRIANGLES, self.num_indices, GL_UNSIGNED_INT, ctypes.c_void_p(0))
-        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0)
-        glBindVertexArray(0)
+        gl.glBindVertexArray(self.vao)
+        gl.glBindBuffer(gl.GL_ELEMENT_ARRAY_BUFFER, self.ebo)
+        gl.glDrawElements(gl.GL_TRIANGLES, self.num_indices, gl.GL_UNSIGNED_INT, ctypes.c_void_p(0))
+        gl.glBindBuffer(gl.GL_ELEMENT_ARRAY_BUFFER, 0)
+        gl.glBindVertexArray(0)
