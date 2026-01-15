@@ -22,10 +22,7 @@ class App(QApplication):
         """
 
         super().__init__(argv)
-        os.environ["SHADER_PATH"] = str(pathlib.Path.joinpath(
-            pathlib.Path(__file__).parent.resolve(),
-            "../examples"
-        ))
+        os.environ["SHADER_PATH"] = os.path.join(os.getcwd(), "examples")
 
         self.main_window = MainWindow()
         self.main_window.show()
