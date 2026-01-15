@@ -1,5 +1,5 @@
-import numpy
 import ctypes
+import numpy
 
 import OpenGL.GL as gl
 
@@ -11,14 +11,14 @@ class Canvas:
     """
 
     # GPU buffers and helper variables
-    # related to creating and rendering 
+    # related to creating and rendering
     # the plane
     vao: numpy.int32 = 0
     vbo: numpy.int32 = 0
     ebo: numpy.int32 = 0
     num_indices: numpy.int32 = 0
     num_vertices: numpy.int32 = 0
-    
+
     def __init__(self):
         """
         Initializes a Canvas object by
@@ -43,7 +43,7 @@ class Canvas:
 
         self.vao = gl.glGenVertexArrays(1)
         gl.glBindVertexArray(self.vao)
-        
+
         self.vbo = gl.glGenBuffers(1)
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, self.vbo)
         gl.glBufferData(gl.GL_ARRAY_BUFFER, vertices.nbytes, vertices, gl.GL_STATIC_DRAW)
@@ -58,10 +58,12 @@ class Canvas:
         gl.glVertexAttribPointer(0, 3, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(0))
 
         gl.glEnableVertexAttribArray(1)
-        gl.glVertexAttribPointer(1, 3, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(3 * ctypes.sizeof(ctypes.c_float)))
+        gl.glVertexAttribPointer(1, 3, gl.GL_FLOAT, gl.GL_FALSE, stride,
+                                ctypes.c_void_p(3 * ctypes.sizeof(ctypes.c_float)))
 
         gl.glEnableVertexAttribArray(2)
-        gl.glVertexAttribPointer(2, 2, gl.GL_FLOAT, gl.GL_FALSE, stride, ctypes.c_void_p(6 * ctypes.sizeof(ctypes.c_float)))
+        gl.glVertexAttribPointer(2, 2, gl.GL_FLOAT, gl.GL_FALSE, stride,
+                                ctypes.c_void_p(6 * ctypes.sizeof(ctypes.c_float)))
 
         gl.glBindBuffer(gl.GL_ARRAY_BUFFER, 0)
         gl.glBindBuffer(gl.GL_ELEMENT_ARRAY_BUFFER, 0)

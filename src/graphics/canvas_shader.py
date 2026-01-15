@@ -73,7 +73,8 @@ class CanvasShader(QOpenGLShaderProgram):
             fragment_source
         ): raise RuntimeError(self.log())
 
-        if not self.link(): raise RuntimeError(self.log())
+        if not self.link():
+            raise RuntimeError(self.log())
 
         self.frame_uniform      = self.uniformLocation("u_frame")
         self.time_uniform       = self.uniformLocation("u_time")
@@ -81,7 +82,7 @@ class CanvasShader(QOpenGLShaderProgram):
         self.mouse_uniform      = self.uniformLocation("u_mouse")
         self.resolution_uniform = self.uniformLocation("u_resolution")
 
-    def setFrame(self, frame: int):
+    def set_frame(self, frame: int):
         """
         Sets the value of the uniform variable
         that stores the current frame number.
@@ -91,7 +92,7 @@ class CanvasShader(QOpenGLShaderProgram):
         """
         self.setUniformValue1i(self.frame_uniform, frame)
 
-    def setTime(self, time: float):
+    def set_time(self, time: float):
         """
         Sets the value of the uniform variable
         that stores the current time.
@@ -101,7 +102,7 @@ class CanvasShader(QOpenGLShaderProgram):
         """
         self.setUniformValue1f(self.time_uniform, time)
 
-    def setTimeDelta(self, time_delta: float):
+    def set_time_delta(self, time_delta: float):
         """
         Sets the value of the uniform variable
         that stores the last frame generation time.
@@ -111,7 +112,7 @@ class CanvasShader(QOpenGLShaderProgram):
         """
         self.setUniformValue1f(self.time_delta_uniform, time_delta)
 
-    def setMouse(self, mouse: list[float]):
+    def set_mouse(self, mouse: list[float]):
         """
         Sets the value of the uniform variable
         that stores the mouse position.
@@ -121,7 +122,7 @@ class CanvasShader(QOpenGLShaderProgram):
         """
         self.setUniformValueArray(self.mouse_uniform, mouse, 1, 2)
 
-    def setResolution(self, resolution: list[float]):
+    def set_resolution(self, resolution: list[float]):
         """
         Sets the value of the uniform variable
         that stores the screen resolution.

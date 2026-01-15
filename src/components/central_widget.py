@@ -3,7 +3,7 @@ import pathlib
 
 from PySide6.QtWidgets import QWidget, QPlainTextEdit, QPushButton, QHBoxLayout, QVBoxLayout
 
-from src.components.ShaderPreview import ShaderPreview
+from src.components.shader_preview import ShaderPreview
 
 class CentralWidget(QWidget):
     """
@@ -27,9 +27,10 @@ class CentralWidget(QWidget):
         :type parent: QWidget | None
         """
         super().__init__(parent)
-        
+
         frag_path = pathlib.Path.joinpath(pathlib.Path(os.environ["SHADER_PATH"]), "UV.frag")
-        with open(frag_path, "r") as frag_shader: frag_source = frag_shader.read()
+        with open(frag_path, "r", encoding="UTF-8") as frag_shader:
+            frag_source = frag_shader.read()
 
         self.console = QPlainTextEdit()
         self.console.setReadOnly(True)
@@ -40,10 +41,10 @@ class CentralWidget(QWidget):
 
         self.compile_button = QPushButton()
         self.compile_button.setText("Compile Shader")
-        self.compile_button.pressed.connect(self.updateShader)
+        self.compile_button.pressed.connect(self.update_shader)
 
         self.shader_preview = ShaderPreview(self.text_edit.document().toPlainText())
-        self.shader_preview.compileFailed.connect(self.onError)
+        self.shader_preview.compileFailed.connect(self.on_error)
 
         text_layout: QVBoxLayout = QVBoxLayout()
         text_layout.addWidget(self.text_edit)
@@ -59,16 +60,16 @@ class CentralWidget(QWidget):
 
         self.setLayout(main_layout)
 
-    def updateShader(self):
+    def update_shader(self):
         """
         Updates the currently displayed shader
         by reading the contents of the text edit
         and passing them to the shader as fragment
         source code.
         """
-        self.shader_preview.updateShader(self.text_edit.document().toPlainText())
+        self.shader_preview.update_shader(self.text_edit.document().toPlainText())
 
-    def onError(self, error_message: str):
+    def on_error(self, error_message: str):
         """
         Handles the error message by printing
         it to the console.

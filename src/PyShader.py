@@ -3,7 +3,7 @@ import sys
 import pathlib
 from src.app import App
 
-os.chdir(str(pathlib.Path(__file__).parent.joinpath("..").resolve()))
+os.chdir("C:/Users/Julek/Desktop/Szkoła/3rok/python/shadertoy")
 
 if __name__ == "__main__":
     app = App(sys.argv)

@@ -1,8 +1,7 @@
 import os
-import pathlib
 from PySide6.QtWidgets import QApplication
 
-from src.components.MainWindow import MainWindow
+from src.components.main_window import MainWindow
 
 class App(QApplication):
     """

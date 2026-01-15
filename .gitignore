@@ -1,0 +1,15 @@
+# environment config
+.vs/
+.venv/
+.vscode/
+
+# cache files
+.cache/
+__pycache__/
+
+# build folders & files
+out/
+bin/
+dist/
+build/
+*.spec
