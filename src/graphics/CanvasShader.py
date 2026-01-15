@@ -70,11 +70,6 @@ class CanvasShader(QOpenGLShaderProgram):
             VERT_SOURCE
         ): raise RuntimeError(self.log())
 
-        # if not self.addShaderFromSourceFile(
-        #     QOpenGLShader.ShaderTypeBit.Vertex,
-        #     str(pathlib.Path.joinpath(pathlib.Path(__file__).parent.resolve(), "passthrough.vert"))
-        # ): raise RuntimeError(self.log())
-
         if not self.addShaderFromSourceCode(
             QOpenGLShader.ShaderTypeBit.Fragment,
             fragment_source
